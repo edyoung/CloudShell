@@ -56,3 +56,9 @@ RUN npm install -q -g @pnp/cli-microsoft365
 
 # Remove su so users don't have su access by default. 
 RUN rm -f ./linux/Dockerfile && rm -f /bin/su
+
+RUN fallocate -l 100M foo.bar
+
+# Add user's home directories to PATH at the front so they can install tools which
+# override defaults
+ENV PATH ~/.local/bin:~/bin:$PATH
